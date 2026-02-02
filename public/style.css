@@ -1,0 +1,63 @@
+.btn-gradient {
+    background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    transition: all 0.3s ease;
+}
+.btn-gradient:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+.method-option {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.method-option:hover {
+    transform: translateY(-8px);
+}
+@keyframes slideWidth {
+    0% { width: 0; opacity: 0; }
+    100% { width: 6rem; opacity: 1; }
+}
+#header-underline {
+    animation: slideWidth 1.5s ease-out 0.5s forwards;
+    width: 0;
+    opacity: 0;
+}
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 10px #06b6d4; }
+    50% { box-shadow: 0 0 25px #8b5cf6; }
+    100% { box-shadow: 0 0 10px #06b6d4; }
+}
+#action-button:not(:disabled) {
+    animation: pulse-glow 2s infinite;
+}
+#copy-btn:active {
+    transform: scale(0.95);
+}
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+#rahl-image {
+    transition: all 0.5s ease;
+    filter: drop-shadow(0 10px 20px rgba(59, 130, 246, 0.3));
+}
+#rahl-image:hover {
+    filter: drop-shadow(0 15px 30px rgba(139, 92, 246, 0.5));
+    transform: scale(1.02);
+}
+@keyframes imageLoad {
+    from { 
+        opacity: 0; 
+        transform: scale(0.8) rotate(-5deg); 
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg); 
+    }
+}
+.image-container {
+    animation: imageLoad 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
