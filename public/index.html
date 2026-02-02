@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAHL XMD | WhatsApp Session Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-black text-white min-h-screen">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <header class="text-center mb-8" id="main-header">
+            <div class="image-container mb-6 animate-float">
+                <img 
+                    src="https://drive.google.com/uc?export=view&id=10byKTYe0w15PndJVkxknsQXoYsBC__u4" 
+                    alt="RAHL XMD" 
+                    class="h-48 w-auto mx-auto rounded-2xl shadow-2xl border-4 border-gray-700/50"
+                    id="rahl-image"
+                    onerror="this.src='https://via.placeholder.com/400x300/1e293b/8b5cf6?text=RAHL+XMD'"
+                >
+            </div>
+            <h1 class="text-5xl font-bold mb-2 tracking-tight">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
+                    RAHL XMD
+                </span>
+            </h1>
+            <p class="text-xl text-gray-300">Generate Your WhatsApp Session Securely</p>
+            <div class="mt-4 h-1 w-24 bg-gradient-to-r from-cyan-500 to-purple-600 mx-auto rounded-full" id="header-underline"></div>
+        </header>
+        <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 mb-10 border border-gray-700 shadow-2xl" id="method-card">
+            <h2 class="text-3xl font-bold mb-6 text-center"><i class="fas fa-key mr-3"></i>Choose Authentication Method</h2>
+            <p class="text-gray-400 text-center mb-8">Select how you want to link your WhatsApp account. Your session ID will be generated upon success.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="method-option text-center p-6 rounded-xl border-2 border-cyan-500/30 bg-gray-900/50 cursor-pointer hover:bg-gray-900/80 transition-all duration-300" id="option-qr" onclick="selectMethod('qr')">
+                    <div class="icon-wrapper text-5xl mb-4 text-cyan-400">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">QR Code</h3>
+                    <p class="text-gray-400">Scan a code with your phone's WhatsApp camera.</p>
+                    <div class="mt-4" id="qr-display">
+                    </div>
+                </div>
+                <div class="method-option text-center p-6 rounded-xl border-2 border-purple-500/30 bg-gray-900/50 cursor-pointer hover:bg-gray-900/80 transition-all duration-300" id="option-pair" onclick="selectMethod('pair')">
+                    <div class="icon-wrapper text-5xl mb-4 text-purple-400">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Pairing Code</h3>
+                    <p class="text-gray-400">Enter a code in WhatsApp's "Link a Device" section.</p>
+                    <div class="mt-6" id="pairing-input-section" style="display: none;">
+                        <input type="text" id="phone-input" placeholder="1XXXXXXXXXX" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white mb-4">
+                        <button onclick="requestPairingCode()" class="btn-gradient px-6 py-3 rounded-lg font-bold w-full">Generate Pairing Code</button>
+                        <p class="text-sm text-gray-500 mt-2">Enter your phone number with country code.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <button id="action-button" onclick="handleAction()" class="btn-gradient text-xl px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-cyan-500/25 transition-shadow disabled:opacity-50" disabled>
+                    <i class="fas fa-play mr-2"></i> Start QR Authentication
+                </button>
+            </div>
+        </div>
+        <div class="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-8 border border-gray-700" id="output-card">
+            <h2 class="text-3xl font-bold mb-4"><i class="fas fa-id-card mr-3"></i>Your Session ID</h2>
+            <p class="text-gray-400 mb-6">After successful authentication, your secure session string will appear here. <span class="text-red-400">Keep it secret!</span></p>
+            <div class="relative">
+                <textarea id="session-output" class="w-full p-4 rounded-xl bg-gray-900 border-2 border-gray-700 font-mono text-sm text-gray-300" rows="6" readonly placeholder="Awaiting authentication..."></textarea>
+                <button onclick="copySession()" class="absolute top-4 right-4 bg-gray-700 hover:bg-gray-600 p-2 rounded-lg" id="copy-btn">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+            <div class="mt-6 flex justify-between text-sm text-gray-500">
+                <div><i class="fas fa-shield-alt mr-1"></i> Encoded in Base64</div>
+                <div id="status-indicator"><i class="fas fa-clock mr-1"></i> Status: Waiting</div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
